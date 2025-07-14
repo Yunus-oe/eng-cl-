@@ -85,7 +85,6 @@
       text-align: center;
     }
   </style>
-
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function() {
@@ -133,7 +132,7 @@
     <button type="submit">Şikayeti Gönder</button>
   </form>
 
-  <div class="response" id="response">Form gönderildikten sonra otomatik olarak cevap e-posta adresinize yönlendirilir.</div>
+  <div class="response" id="response"></div>
 
   <footer>
     © 2025 Gönül Bakanlığı <br>
@@ -142,14 +141,39 @@
   </footer>
 
   <script>
+    function showPopup(message) {
+      const popup = document.createElement('div');
+      popup.textContent = message;
+      popup.style.position = 'fixed';
+      popup.style.top = '50%';
+      popup.style.left = '50%';
+      popup.style.transform = 'translate(-50%, -50%)';
+      popup.style.background = '#ff69b4';
+      popup.style.color = 'white';
+      popup.style.padding = '1.5rem';
+      popup.style.borderRadius = '12px';
+      popup.style.fontWeight = 'bold';
+      popup.style.fontSize = '1rem';
+      popup.style.boxShadow = '0 0 12px rgba(0,0,0,0.3)';
+      popup.style.zIndex = '9999';
+      popup.style.cursor = 'pointer';
+      popup.style.maxWidth = '90%';
+      popup.style.textAlign = 'center';
+
+      popup.onclick = () => popup.remove();
+      document.body.appendChild(popup);
+
+      setTimeout(() => popup.remove(), 7000);
+    }
+
     function handleSubmit(event) {
       event.preventDefault();
       const form = event.target;
 
       emailjs.sendForm('service_8e3pfc4', 'template_apbc4bx', form)
         .then(function() {
-          document.getElementById("response").textContent = "Şikayet başarıyla iletildi!";
           form.reset();
+          showPopup("Şikayet başarıyla iletildi!\n(Eğer 2 iş saati içinde cevap vermezse, onu resmî olarak dövme hakkın doğar)");
         }, function(error) {
           document.getElementById("response").textContent = "Bir hata oluştu. Lütfen tekrar dene.";
         });
