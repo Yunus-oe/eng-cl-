@@ -2,6 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gönül Bakanlığı | Şikayet Formu</title>
   <style>
     body {
@@ -9,39 +10,51 @@
       background-image: url('https://www.transparenttextures.com/patterns/hearts.png');
       background-color: #fff0f5;
       color: #333;
-      text-align: center;
-      padding: 2rem;
+      margin: 0;
+      padding: 1.5rem;
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+      margin-bottom: 0.25rem;
+      line-height: 1.4;
+      text-align: center;
     }
 
     p.subtitle {
       font-style: italic;
       color: #777;
-      margin-top: 2.5rem;
-      margin-bottom: 2.5rem;
+      font-size: 0.9rem;
+      margin: 1.2rem auto 2rem;
+      text-align: center;
+      max-width: 90%;
     }
 
     form {
       background: #fff;
-      padding: 2rem;
+      padding: 1.5rem;
       border-radius: 12px;
-      max-width: 500px;
-      margin: auto;
+      max-width: 100%;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin: 0 auto;
+    }
+
+    label {
+      text-align: left;
+      display: block;
+      margin: 0.75rem 0 0.3rem;
+      font-size: 0.95rem;
     }
 
     select, textarea, button, input {
       width: 100%;
-      margin: 1rem 0;
+      margin-bottom: 1rem;
       padding: 0.75rem;
       font-size: 1rem;
       border-radius: 8px;
       border: 1px solid #ccc;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: inherit;
+      box-sizing: border-box;
     }
 
     button {
@@ -49,7 +62,8 @@
       color: white;
       border: none;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background-color 0.3s;
+      font-weight: bold;
     }
 
     button:hover {
@@ -57,17 +71,21 @@
     }
 
     .response {
-      margin-top: 2rem;
+      margin-top: 1.5rem;
       font-weight: bold;
       color: #ff1493;
+      text-align: center;
+      font-size: 0.95rem;
     }
 
     footer {
-      margin-top: 4rem;
-      font-size: 0.8rem;
+      margin-top: 3rem;
+      font-size: 0.75rem;
       color: #888;
+      text-align: center;
     }
   </style>
+
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function() {
@@ -76,7 +94,7 @@
   </script>
 </head>
 <body>
-  <h1 style="margin-bottom: 0; line-height: 1;">Gönül Bakanlığı <br><span style="font-size: 0.85rem; font-style: italic; font-weight: normal; color: #888;">(sadece dağın üstündeki bir çiçek için ~ Selin)</span></h1>
+  <h1>Gönül Bakanlığı<br><span style="font-size: 0.85rem; font-style: italic; font-weight: normal; color: #888;">(sadece dağın üstündeki bir çiçek için ~ Selin)</span></h1>
   <p class="subtitle">Duygusal Şikayet Bildirimi Formu (Beta test versiyonu: sarhoş olursam yine değiştiririm)</p>
 
   <form name="contact-form" onsubmit="handleSubmit(event)">
@@ -118,7 +136,9 @@
   <div class="response" id="response">Form gönderildikten sonra otomatik olarak cevap e-posta adresinize yönlendirilir.</div>
 
   <footer>
-    © 2025 Gönül Bakanlığı | Tüm başvurular bir adam (191 cm boyunda, spor yapan, feminist) tarafından yatakta, anime izlerken değerlendirilir. Cevap süresi garanti edilmez.
+    © 2025 Gönül Bakanlığı <br>
+    Tüm başvurular bir adam (191 cm boyunda, spor yapan, feminist) tarafından yatakta, anime izlerken değerlendirilir. <br>
+    Cevap süresi garanti edilmez.
   </footer>
 
   <script>
