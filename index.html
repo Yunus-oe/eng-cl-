@@ -84,6 +84,32 @@
       color: #888;
       text-align: center;
     }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #ff69b4;
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 1rem;
+      box-shadow: 0 0 12px rgba(0,0,0,0.3);
+      z-index: 9999;
+      max-width: 90%;
+      text-align: center;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      font-weight: normal;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
@@ -143,27 +169,9 @@
   <script>
     function showPopup(message) {
       const popup = document.createElement('div');
-      popup.textContent = message;
-      popup.style.position = 'fixed';
-      popup.style.top = '50%';
-      popup.style.left = '50%';
-      popup.style.transform = 'translate(-50%, -50%)';
-      popup.style.background = '#ff69b4';
-      popup.style.color = 'white';
-      popup.style.padding = '1.5rem';
-      popup.style.borderRadius = '12px';
-      popup.style.fontWeight = 'bold';
-      popup.style.fontSize = '1rem';
-      popup.style.boxShadow = '0 0 12px rgba(0,0,0,0.3)';
-      popup.style.zIndex = '9999';
-      popup.style.cursor = 'pointer';
-      popup.style.maxWidth = '90%';
-      popup.style.textAlign = 'center';
-
-      popup.onclick = () => popup.remove();
+      popup.className = 'popup';
+      popup.innerHTML = '<span class="popup-close" onclick="this.parentElement.remove()">×</span>' + message;
       document.body.appendChild(popup);
-
-      setTimeout(() => popup.remove(), 7000);
     }
 
     function handleSubmit(event) {
@@ -173,7 +181,7 @@
       emailjs.sendForm('service_8e3pfc4', 'template_apbc4bx', form)
         .then(function() {
           form.reset();
-          showPopup("Şikayet başarıyla iletildi!\n(Eğer 2 iş saati içinde cevap vermezse, onu resmî olarak dövme hakkın doğar)");
+          showPopup("Şikayet başarıyla iletildi!<br>(Eğer 2 iş saati içinde cevap vermezse, onu resmî olarak dövme hakkın doğar)");
         }, function(error) {
           document.getElementById("response").textContent = "Bir hata oluştu. Lütfen tekrar dene.";
         });
